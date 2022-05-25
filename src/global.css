@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Bellefair&family=Open+Sans&family=Poppins&display=swap');
+
+body,html{
+    font-family: 'Poppins',sans-serif;
+}
