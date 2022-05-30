@@ -22,7 +22,7 @@ const Profile = () => {
   }, [username])
   
   return (
-    <div className='h-screen bg-gray-100'>
+    <div>
       <Header/>
       <div className='mx-auto w-3/4'>
         <UserProfile userInfo={user}/>

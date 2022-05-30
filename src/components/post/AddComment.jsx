@@ -8,7 +8,6 @@ const AddComment = ({commentInput,comment,setComment,docId}) => {
   const handleCommentForm = async(e) => {
     e.preventDefault()
     setComment([{displayName:username,comment:inputComment},...comment])
-    console.log(comment);
     setInputComment('')
     const docRef = doc(db, 'photos', docId)
     await updateDoc(docRef,{

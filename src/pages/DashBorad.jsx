@@ -7,7 +7,7 @@ const DashBorad = () => {
   return (
     <div className='h-screen'>
       <Header/>
-      <div className='md:w-3/4 w-full mx-auto grid grid-cols-3'>
+      <div className='sm:w-3/4 w-full mx-auto grid grid-cols-3'>
         <Timeline/>
         <Sidebar/>
       </div>

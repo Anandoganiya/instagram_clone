@@ -24,14 +24,14 @@ const UserProfile = ({userInfo}) => {
   },[userInfo])
 
   return (
-    <div>
+    <div className='w-full'>
         <Header 
         profile={profile}
         photosCollection={photosCollection ? photosCollection : 0} 
         followersLength={followersLength}
         setFollowCount={dispatch}
         />
-        <Photos photosCollection={photosCollection}/>
+        <Photos photos={photosCollection}/>
     </div>
   )
 }

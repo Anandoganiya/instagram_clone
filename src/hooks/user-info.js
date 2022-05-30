@@ -8,7 +8,7 @@ const useUser = () => {
     useEffect(()=>{
         const getUserData = async() =>{
             try{
-                const [response] = await getUserInfo(user.uid);
+                const [response] = await getUserInfo(user?.uid);
                 setActiveUser(response);
                 
             }catch(error){

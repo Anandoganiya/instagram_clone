@@ -7,7 +7,7 @@ const Timeline = () => {
   const {userPhotos} = usePhoto()
   const {user:{following}} = useUser()
   return (
-    <div className='col-span-2'> 
+    <div className='sm:col-span-2 col-span-3'> 
       {
         following===undefined?(
           <Skeleton count={4} height={400} className="my-4"></Skeleton>
