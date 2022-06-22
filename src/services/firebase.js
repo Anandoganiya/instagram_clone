@@ -2,15 +2,15 @@ import { collection,where,query, getDocs, limit,doc,updateDoc,arrayRemove,arrayU
 import { db } from "../lib/firebaseConfig"
 
 export const userExits = async (username) => {
-    const collectionRef = await collection(db,'users')
-   const q = await query(collectionRef,where('username','==',username));
+    const collectionRef =  collection(db,'users')
+   const q =  query(collectionRef,where('username','==',username));
    const user = await getDocs(q);
    return user.docs.map(doc=> doc.data().length > 0);
 }
 
 export const getUserInfo = async(userId) => {
-    const collectionRef = await collection(db,'users');
-    const q = await query(collectionRef,where('userId','==',userId));
+    const collectionRef =  collection(db,'users');
+    const q =  query(collectionRef,where('userId','==',userId));
     const currentUser = await getDocs(q)   
     return currentUser.docs.map(doc=>({
         ...doc.data(),
@@ -19,8 +19,8 @@ export const getUserInfo = async(userId) => {
 }
 
 export const getUserSuggeestions = async(userId) =>{
-    const collectionRef = await collection(db,'users');
-    const q = await query(collectionRef,where('userId','!=',userId),limit(10))
+    const collectionRef =  collection(db,'users');
+    const q =  query(collectionRef,where('userId','!=',userId),limit(10))
     const users = await getDocs(q)
     return users.docs.map(doc=>({
         ...doc.data(),
@@ -29,7 +29,7 @@ export const getUserSuggeestions = async(userId) =>{
 }
 
 export const updateFollowersOfUser = async(suggestedUserDocId,currentUserId,isFollowed) => {
-    const docRef = await doc(db,'users',suggestedUserDocId);
+    const docRef =  doc(db,'users',suggestedUserDocId);
     await updateDoc(docRef,{
         follower:isFollowed?
         arrayRemove(currentUserId):
@@ -38,7 +38,7 @@ export const updateFollowersOfUser = async(suggestedUserDocId,currentUserId,isFo
 }
 
 export const updateFolllowingOfCurrentUser = async(suggestedUserId,userDocId,isFollowed) => {
-    const docRef = await doc(db,'users',userDocId);
+    const docRef =  doc(db,'users',userDocId);
     await updateDoc(docRef,{
         following:isFollowed?
         arrayRemove(suggestedUserId):
@@ -47,8 +47,8 @@ export const updateFolllowingOfCurrentUser = async(suggestedUserId,userDocId,isF
 }
 
 export const getPostsPhotos = async(userId,following) =>{
-    const collectionRef = await collection(db,'photos');
-    const q = await query(collectionRef,where('userId','in',following));
+    const collectionRef =  collection(db,'photos');
+    const q =  query(collectionRef,where('userId','in',following));
     const followingUsers = await getDocs(q)
     const followUsersPhotos = followingUsers.docs.map(doc=>({
         ...doc.data(),
@@ -69,8 +69,8 @@ export const getPostsPhotos = async(userId,following) =>{
 }
 
 export const getUserByUsername = async(username) =>{
-    const collectionRef = await collection(db,'users')   
-    const q = await query(collectionRef,where('username','==',username))
+    const collectionRef =  collection(db,'users')   
+    const q =  query(collectionRef,where('username','==',username))
     const userInfo = await getDocs(q)
     return userInfo.docs.map(item=>({
         ...item.data(),
@@ -79,8 +79,8 @@ export const getUserByUsername = async(username) =>{
 }
 
 export const getUserPhotos = async (userId)=>{
-    const collectionRef = await collection(db,'photos')
-    const q = await query(collectionRef,where('userId','==',userId))
+    const collectionRef =  collection(db,'photos')
+    const q =  query(collectionRef,where('userId','==',userId))
     const userPhotos = await getDocs(q)
     return userPhotos.docs.map(item=>({
         ...item.data(),
@@ -89,8 +89,8 @@ export const getUserPhotos = async (userId)=>{
 }
 
 export const isLoggedInFollowing = async (LoggedInUserId,profileUserId) => {
-    const collectionRef = await collection(db,'users')    
-    const q = await query(collectionRef,where('userId','==',LoggedInUserId),where('following','array-contains',profileUserId));
+    const collectionRef =  collection(db,'users')    
+    const q =  query(collectionRef,where('userId','==',LoggedInUserId),where('following','array-contains',profileUserId));
     const user = await getDocs(q)
     const [result = {}] =  user.docs.map(item=>{
         return {
@@ -106,7 +106,15 @@ export const toggleFollow = async (currentUserId,CurrentUserDocId,profileUserId,
     await updateFolllowingOfCurrentUser(profileUserId,CurrentUserDocId,isFollowing)    
 }
 
-
+export const getFollowingUsers = async (followingUsers) =>{
+    const collectionRef =  collection(db,'users')
+    const q =  query(collectionRef,where('userId','in',followingUsers))
+    const users = await getDocs(q)
+    return  users.docs.map(item=>({
+        ...item.data(),
+        docId:item.id
+    }))
+}
 
 
 
