@@ -9,9 +9,10 @@ const Comments = ({ docId, dateCreated, comments, commentInput }) => {
   const showNextComments = () => {
     setCommentsSlice(commentsSlice + 3);
   };
+
   return (
     <div>
-      {comments.slice(0, 3).map((item, index) => (
+      {comment.slice(0, commentsSlice).map((item, index) => (
         <div className="flex space-x-3 m-1" key={index}>
           <Link to={`/p/${item.displayName}`}>
             <p className="font-semibold">{item.displayName}</p>
@@ -19,7 +20,7 @@ const Comments = ({ docId, dateCreated, comments, commentInput }) => {
           <p>{item.comment}</p>
         </div>
       ))}
-      {comments.length >= 3 && commentsSlice < comments.length && (
+      {comment.length >= 3 && commentsSlice < comment.length && (
         <button
           className="text-sm text-gray-base mb-1 cursor-pointer focus:outline-none"
           type="button"

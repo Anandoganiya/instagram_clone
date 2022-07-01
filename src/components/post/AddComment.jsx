@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import useUser from "../../hooks/user-info";
 import { arrayUnion, updateDoc, doc } from "firebase/firestore";
 import { db } from "../../lib/firebaseConfig";
@@ -9,10 +9,10 @@ const AddComment = ({ commentInput, comment, setComment, docId }) => {
   } = useUser();
   const handleCommentForm = async (e) => {
     e.preventDefault();
-    setComment([{ displayName: username, comment: inputComment }, ...comment]);
+    setComment([...comment, { displayName: username, comment: inputComment }]);
     setInputComment("");
     const docRef = doc(db, "photos", docId);
-    await updateDoc(docRef, {
+    return await updateDoc(docRef, {
       comments: arrayUnion({ displayName: username, comment: inputComment }),
     });
   };
