@@ -56,6 +56,7 @@ const Header = ({
       isLoggedInUserFollowing();
     }
   }, [user.userId, profile.userId]);
+
   return (
     <header className="w-full grid grid-cols-3 mt-4">
       <div className="w-[5rem] md:w-[8rem]">
@@ -73,7 +74,7 @@ const Header = ({
         <div className="flex flex-col">
           <div className="flex space-x-4">
             <p className="cursor-pointer">{profile.username}</p>
-            {followBtn ? (
+            {profile.username && followBtn ? (
               <button
                 onClick={handleToggleFollow}
                 className="bg-[#458eff] p-1 rounded text-white"

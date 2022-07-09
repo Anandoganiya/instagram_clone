@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Header } from "../components";
+import { Header } from "../components/index";
 import UserProfile from "../components/profile/UserProfile";
 import { getUserByUsername } from "../services/firebase";
 import { useStore } from "../context/ModalContext";
@@ -26,7 +26,7 @@ const Profile = () => {
 
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <div className="mx-auto w-3/4">
         <UserProfile userInfo={user} />
       </div>

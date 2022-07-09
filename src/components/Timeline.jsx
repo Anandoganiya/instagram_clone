@@ -12,7 +12,7 @@ const Timeline = () => {
   return (
     <div className="sm:col-span-2 col-span-3">
       {following === undefined ? (
-        <Skeleton count={4} height={400} className="my-4"></Skeleton>
+        <Skeleton count={4} height={300} className="my-4"></Skeleton>
       ) : following.length === 0 ? (
         <div>Follow to see photos</div>
       ) : userPhotos ? (

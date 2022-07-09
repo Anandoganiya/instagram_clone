@@ -9,6 +9,7 @@ import Skeleton from "react-loading-skeleton";
 const Header = () => {
   const { user } = useContext(userContext);
   const userInfo = useUser();
+
   return (
     <header className="w-full shadow-md bg-white">
       <nav className="md:w-3/4 w-full mx-auto p-3 flex justify-between">

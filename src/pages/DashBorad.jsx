@@ -9,7 +9,7 @@ const DashBorad = () => {
   });
   return (
     <div className="h-screen">
-      <Header />
+      {/* <Header /> */}
       <div className="sm:w-3/4 w-full mx-auto grid grid-cols-3">
         <Timeline />
         <Sidebar />

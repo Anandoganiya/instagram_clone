@@ -7,7 +7,12 @@ const Photos = ({ photos }) => {
     <>
       <div className="flex flex-wrap justify-center gap-2 mt-4">
         {!photos ? (
-          <Skeleton count={4} height={200} width={200} />
+          <Skeleton
+            containerClassName="flex gap-1"
+            count={4}
+            height={300}
+            width={240}
+          />
         ) : photos.length > 0 ? (
           photos.map((photo) => {
             return (

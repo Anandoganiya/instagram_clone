@@ -31,7 +31,7 @@ const UserProfile = ({ userInfo }) => {
   }, [userInfo]);
 
   return (
-    <div className="w-full">
+    <div className="w-full my-4">
       <Header
         profile={profile}
         photosCollection={photosCollection ? photosCollection : 0}
